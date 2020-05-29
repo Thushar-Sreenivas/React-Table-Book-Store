@@ -23,20 +23,7 @@ const useRowStyles = makeStyles({
   },
 });
 
-function createData(name, calories, fat, carbs, protein, price) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-    ],
-  };
-}
+
 
 function Row(props) {
   const { row } = props;
@@ -121,16 +108,59 @@ function Row(props) {
 //   }).isRequired,
 // };
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-  createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-];
+// function EnhancedTableHead(props) {
+//   const {  order, orderBy, onRequestSort } = props;
+//   const createSortHandler = (property) => (event) => {
+//     onRequestSort(event, property);
+//   };
+//   return (
+//     <TableHead>
+//       <TableRow>
+//         <TableCell padding="checkbox">
+//           {/* <Checkbox
+//             // indeterminate={numSelected > 0 && numSelected < rowCount}
+//             // checked={rowCount > 0 && numSelected === rowCount}
+//             onChange={onSelectAllClick}
+//             inputProps={{ 'aria-label': 'select all desserts' }}
+//           /> */}
+//         </TableCell>
+//         {headCells.map((headCell) => (
+//           <TableCell
+//             key={headCell.id}
+//             align={headCell.numeric ? 'right' : 'left'}
+//             padding={headCell.disablePadding ? 'none' : 'default'}
+//             sortDirection={orderBy === headCell.id ? order : false}
+//           >
+//             <TableSortLabel
+//               active={orderBy === headCell.id}
+//               direction={orderBy === headCell.id ? order : 'asc'}
+//               onClick={createSortHandler(headCell.id)}
+//             >
+//               {headCell.label}
+//               {orderBy === headCell.id ? (
+//                 <span className={classes.visuallyHidden}>
+//                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+//                 </span>
+//               ) : null}
+//             </TableSortLabel>
+//           </TableCell>
+//         ))}
+//       </TableRow>
+//     </TableHead>
+//   );
+// }
 
 export default function CollapsibleTable({book}) {
     let counter = 1
+    
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('book_title');
+    
+    const handleRequestSort = (event, property) => {
+      const isAsc = orderBy === property && order === 'asc';
+      setOrder(isAsc ? 'desc' : 'asc');
+      setOrderBy(property);
+    };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -145,6 +175,15 @@ export default function CollapsibleTable({book}) {
             <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
+         {/* <EnhancedTableHead
+              // classes={classes}
+              // numSelected={selected.length}
+              order={order}
+              orderBy={orderBy}
+              // onSelectAllClick={handleSelectAllClick}
+              onRequestSort={handleRequestSort}
+            //   rowCount={rows.length}
+            /> */}
         <TableBody>
           {book.map((row) => (
             <Row key={row.ISBN} row={row} counter={counter++}/>

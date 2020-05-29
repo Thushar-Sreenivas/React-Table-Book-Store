@@ -1,33 +1,36 @@
 import React from 'react';
 import MaterialTable from 'material-table';
-
+import {cloneDeep} from 'lodash'
 export default function MaterialTableDemo({book}) {
-    console.log(book);
-    
+  let data = cloneDeep(book)
+  console.log("MaterialTableDemo -> Final data", data)
+  // data.map(e => console.log("e",e)
+  // )
   const [state, setState] = React.useState({
     columns: [
+      { title: 'Book Title', field: 'book_title' },
       { title: 'ISBN', field: 'ISBN' },
-      { title: 'book_title', field: 'book_title' },
-      { title: 'author', field: 'author' },
-      {
-        title: 'category',
-        field: 'category',
-      },
+      { title: 'Author', field: 'author' },
+      {title: 'Category',field: 'category'},
+      {title: 'Price',field: 'price'},
     ],
-    data: [
-      { ISBN: book.ISBN, book_title: book.book_title, author: book.author, category: book.category },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
+    // data: [
+    //   { book_title: 'Mehmet', ISBN: 'Baran', author: 'Test', category: 'Test Category', price: 12 },
+    //   {
+    //     name: 'Zerya Betül',
+    //     surname: 'Baran',
+    //     birthYear: 2017,
+    //     birthCity: 34,
+    //   },
+    // ],
+    data: cloneDeep(book)
+    
   });
-
+  console.log("MaterialTableDemo -> data", state.data)
+  
   return (
     <MaterialTable
-      title="Editable Example"
+      title="Book Store Admin"
       columns={state.columns}
       data={state.data}
       editable={{

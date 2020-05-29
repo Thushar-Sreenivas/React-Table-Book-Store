@@ -4,6 +4,8 @@ import AdminTableEditable from './container/adminTableEditable'
 import Axios from 'axios';
 import CollapsibleTable from './container/adminTableCollapisble';
 import EnhancedTable from './container/adminTableSortable';
+import MaterialTableDemo from './container/adminTableEditable';
+import MaterialTable from 'material-table';
 
 function App() {
   const [book, setBook] = useState([])
@@ -20,7 +22,7 @@ function App() {
 
   useEffect(() => {
     getBookAsync()
-   }, [filterCategory]);
+   },[filterCategory]);
   
   function filterChangeHandler() {
     // console.log("Clicked");
@@ -29,9 +31,12 @@ function App() {
    
   return (
     <div className="App">
-      <EnhancedTable book={book}/>
-      {/* <button onClick={filterChangeHandler} >Filter</button>
-      <CollapsibleTable book={book} /> */}
+      {/* <MaterialTable /> */}
+      <MaterialTableDemo book={book}/>
+      {/* <EnhancedTable book={book}/> */}
+      <button onClick={filterChangeHandler} >Filter</button>
+      <CollapsibleTable book={book} />
+      {/* <SimpleTable book={book} /> */}
     </div>
   );
 }
