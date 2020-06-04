@@ -23,7 +23,7 @@ export default function MaterialTableDemo({book}) {
     //     birthCity: 34,
     //   },
     // ],
-    data: cloneDeep(book)
+    data: cloneDeep(book)  //When i deep clone the book into data. It should work right
     
   });
   console.log("MaterialTableDemo -> data", state.data)

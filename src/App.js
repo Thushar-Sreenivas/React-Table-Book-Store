@@ -6,35 +6,34 @@ import CollapsibleTable from './container/adminTableCollapisble';
 import EnhancedTable from './container/adminTableSortable';
 import MaterialTableDemo from './container/adminTableEditable';
 import MaterialTable from 'material-table';
+import { AddBookHandler } from './component/AddBook';
 
 function App() {
   const [book, setBook] = useState([])
-  const [filterCategory, setFilterCategory] = useState('http://localhost:3000/book/')
+  const [bookURL, setBookURL] = useState('http://localhost:3000/book/')
+  
   async function getBookAsync() {
     try {
-      let response = await Axios.get(`${filterCategory}`)
+      let response = await Axios.get(`${bookURL}`)
       setBook(response.data);
     }
     catch(error) {
       console.log(error.message)
     }
   }
-
   useEffect(() => {
     getBookAsync()
-   },[filterCategory]);
+   },[]);
   
-  function filterChangeHandler() {
-    // console.log("Clicked");
-    setFilterCategory('http://localhost:3000/book/Motivation')
-  }
-   
+
   return (
     <div className="App">
       {/* <MaterialTable /> */}
-      <MaterialTableDemo book={book}/>
+      {/* <MaterialTableDemo book={book}/> */}
       {/* <EnhancedTable book={book}/> */}
-      <button onClick={filterChangeHandler} >Filter</button>
+      {/* <button onClick={filterChangeHandler} >Filter</button> */}
+      <button>Add Book</button>
+      <AddBookHandler />
       <CollapsibleTable book={book} />
       {/* <SimpleTable book={book} /> */}
     </div>
