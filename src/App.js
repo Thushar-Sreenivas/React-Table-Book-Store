@@ -32,8 +32,8 @@ function App() {
       {/* <MaterialTableDemo book={book}/> */}
       {/* <EnhancedTable book={book}/> */}
       {/* <button onClick={filterChangeHandler} >Filter</button> */}
-      {/* <button>Add Book</button>
-      <AddBookHandler /> */}
+      {/* <button>Add Book</button> */}
+      <AddBookHandler />
       <CollapsibleTable book={book} />
       {/* <SimpleTable book={book} /> */}
     </div>
