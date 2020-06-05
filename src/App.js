@@ -7,7 +7,7 @@ import EnhancedTable from './container/adminTableSortable';
 import MaterialTableDemo from './container/adminTableEditable';
 import MaterialTable from 'material-table';
 import { AddBookHandler } from './component/AddBook';
-
+import EditIcon from '@material-ui/icons/Edit';
 function App() {
   const [book, setBook] = useState([])
   const [bookURL, setBookURL] = useState('http://localhost:3000/book/')
@@ -32,8 +32,8 @@ function App() {
       {/* <MaterialTableDemo book={book}/> */}
       {/* <EnhancedTable book={book}/> */}
       {/* <button onClick={filterChangeHandler} >Filter</button> */}
-      <button>Add Book</button>
-      <AddBookHandler />
+      {/* <button>Add Book</button>
+      <AddBookHandler /> */}
       <CollapsibleTable book={book} />
       {/* <SimpleTable book={book} /> */}
     </div>
