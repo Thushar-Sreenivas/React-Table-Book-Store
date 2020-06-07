@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
-import CollapsibleTable from "../container/adminTableCollapisble";
+// import CollapsibleTable from "../container/adminTableCollapisble";
 import React, { useState, useEffect, useContext } from "react";
 import {URLContext} from "../Context";
 import Axios from "axios";
@@ -51,7 +51,7 @@ export default function SimpleCard() {
   return (
     <Card className={classes.root}>
       <CardContent className={classes.card}>
-        <CollapsibleTable book={book} />
+        {/* <CollapsibleTable book={book} /> */}
       </CardContent>
     </Card>
   );
