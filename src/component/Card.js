@@ -7,6 +7,7 @@ import React, { useState, useEffect, useContext } from "react";
 import {URLContext} from "../Context";
 import Axios from "axios";
 import AdminHeader from "./AdminHeader";
+import AddBook from "./AddBook";
 
 const useStyles = makeStyles({
   root: {
@@ -16,8 +17,8 @@ const useStyles = makeStyles({
 
   card: {
     // backgroundColor: "#181A1B",
-    backgroundColor: "#172b4d",
-
+    // backgroundColor: "#172b4d",
+    
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
     width: "auto",
@@ -49,10 +50,6 @@ export default function SimpleCard() {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      {/* <CardHeader>
-        <h1>Card tables</h1>
-      </CardHeader> */}
-      <AdminHeader book={book}/>
       <CardContent className={classes.card}>
         <CollapsibleTable book={book} />
       </CardContent>

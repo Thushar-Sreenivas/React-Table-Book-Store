@@ -5,6 +5,23 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { closeModalContext, closeAddContext } from "../Context";
+import TableCell from "@material-ui/core/TableCell";
+
+const useStyles = makeStyles({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    // justifyContent: 'spaceEvenly',
+    // alignContent: 'center',
+    alignItems: 'center',
+  },
+  item: {
+    // flexBasis: '10px'
+    // padding: '10px',
+    // margin: '20px',
+  }
+});
 
 export default function AddUpdateBook({
   req = "post",
@@ -31,6 +48,10 @@ export default function AddUpdateBook({
   //   },
   // }))(TextField);
 
+
+  
+    const classes = useStyles();
+
   const [book, setBook] = useState({
     ISBN: null,
     book_title: "",
@@ -46,6 +67,7 @@ export default function AddUpdateBook({
   if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
   const [editing, setEditing] = useContext(closeModalContext);
   const [add, setAdd] = useContext(closeAddContext)
+  
   function handleChange(event) {
     const value = event.target.value;
     setBook({
@@ -85,8 +107,10 @@ export default function AddUpdateBook({
   }
 
   return (
-    <div>
+    <TableCell className={classes.container}>
+      {/* <h1 className={classes.root}>Hello</h1> */}
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="ISBN"
         name="ISBN"
@@ -96,6 +120,7 @@ export default function AddUpdateBook({
       />
       <p>{book.ISBN}</p>
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="Book Title"
         name="book_title"
@@ -103,6 +128,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="author"
         name="author"
@@ -110,6 +136,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="category"
         name="category"
@@ -117,6 +144,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="publisher"
         name="publisher"
@@ -124,6 +152,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="synopsis"
         name="synopsis"
@@ -131,6 +160,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="price"
         name="price"
@@ -138,6 +168,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <TextField
+        className={classes.item}
         // id="standard-basic"
         label="stack_count"
         name="stack_count"
@@ -145,7 +176,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
       />
       <CheckCircleOutlineIcon onClick={onSubmitHandler} />
-    </div>
+    </TableCell>
   );
 }
 

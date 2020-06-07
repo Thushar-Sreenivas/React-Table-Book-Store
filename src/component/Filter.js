@@ -50,7 +50,7 @@ export default function FilterBook({book}) {
           onChange={handleFilterChange}
         >
           {book.map((row) => (
-              <MenuItem value={row.category}>{row.category}</MenuItem>
+              <MenuItem key={row.ISBN} value={row.category}>{row.category}</MenuItem>
           ))}
         </Select>
         <CheckCircleOutlineIcon onClick={onSumbitHandler} />

@@ -13,12 +13,18 @@ import {closeModalContext} from '../Context'
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    
+    // background:
+    //   "linear-gradient(90deg, rgba(86,103,221,1) 0%, rgba(94,203,247,1) 100%)",
     // backgroundImage: "linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%)",
   },
 
   card: {
     // backgroundColor: "#181A1B",
     backgroundColor: "#172b4d",
+    // background: "rgb(86,103,221)",
+    // background:
+    //   "linear-gradient(90deg, rgba(86,103,221,1) 0%, rgba(94,203,247,1) 100%)",
 
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
@@ -53,7 +59,6 @@ export default function BookStore() {
   return (
     <closeModalContext.Provider value={modalCloseHook}>
       <Card className={classes.root}>
-        <AdminHeader book={book} />
         <CardContent className={classes.card}>
           <AdminTable book={book} />
         </CardContent>

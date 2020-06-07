@@ -20,6 +20,8 @@ import TextField from "@material-ui/core/TextField";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import AddUpdateBook from "../component/AddUpdateBook";
 import { closeModalContext } from "../Context";
+import Tooltip from "@material-ui/core/Tooltip";
+import AdminHeader from './AdminHeader'
 // import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -32,9 +34,10 @@ import { closeModalContext } from "../Context";
 const StyledTableCell = withStyles(() => ({
   head: {
     backgroundColor: "#172b4d",
-
+    // backgroundColor: "#11cdef",
+    
     // backgroundColor: theme.palette.common.black,
-    color: 'white',
+    color: "white",
   },
   body: {
     fontSize: 21,
@@ -79,7 +82,8 @@ function Row(props) {
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
-        <TableCell>
+        <StyledTableCell>
+          <Tooltip title="Expand">
             <IconButton
               color="primary"
               aria-label="expand row"
@@ -88,39 +92,41 @@ function Row(props) {
             >
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
+          </Tooltip>
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
           {props.counter}
-        </TableCell>
-        <TableCell component="th" scope="row">
+        </StyledTableCell>
+        <StyledTableCell component="th" scope="row">
           {row.book_title}
-        </TableCell>
-        <TableCell align="right">{row.ISBN}</TableCell>
-        <TableCell align="right">{row.author}</TableCell>
-        <TableCell align="right">{row.publisher}</TableCell>
-        <TableCell align="right">{row.category}</TableCell>
-        <TableCell align="right">{row.price}</TableCell>
+        </StyledTableCell>
+        <StyledTableCell align="right">{row.ISBN}</StyledTableCell>
+        <StyledTableCell align="right">{row.author}</StyledTableCell>
+        <StyledTableCell align="right">{row.publisher}</StyledTableCell>
+        <StyledTableCell align="right">{row.category}</StyledTableCell>
+        <StyledTableCell align="right">{row.price}</StyledTableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
+        <StyledTableCell
+          style={{ paddingBottom: 0, paddingTop: 0 }}
+          colSpan={9}
+        >
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom component="div">
-                Book Details
-              </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>No</TableCell>
-                    <TableCell>Book Title</TableCell>
-                    <TableCell align="right">ISBN</TableCell>
-                    <TableCell align="right">Author</TableCell>
-                    <TableCell align="right">Category</TableCell>
-                    <TableCell align="right">Publisher</TableCell>
-                    <TableCell align="center">Synopsis</TableCell>
-                    <TableCell align="right">Price</TableCell>
-                    <TableCell align="right">Stack Count</TableCell>
-                    <TableCell align="right">Actions</TableCell>
+                    <StyledTableCell>No</StyledTableCell>
+                    <StyledTableCell>Book Title</StyledTableCell>
+                    <StyledTableCell align="right">ISBN</StyledTableCell>
+                    <StyledTableCell align="right">Author</StyledTableCell>
+                    <StyledTableCell align="right">Category</StyledTableCell>
+                    <StyledTableCell align="right">Publisher</StyledTableCell>
+                    <StyledTableCell align="center">Synopsis</StyledTableCell>
+                    <StyledTableCell align="right">Price</StyledTableCell>
+                    <StyledTableCell align="right">Stack Count</StyledTableCell>
+                    <StyledTableCell align="right">Actions</StyledTableCell>
+                    <StyledTableCell></StyledTableCell>
                   </TableRow>
                 </TableHead>
                 {editing ? (
@@ -137,28 +143,58 @@ function Row(props) {
                   />
                 ) : (
                   <TableBody>
-                    <TableCell align="right">{props.counter}</TableCell>
-                    <TableCell align="right">{row.book_title}</TableCell>
-                    <TableCell align="right">{row.ISBN}</TableCell>
-                    <TableCell align="right">{row.author}</TableCell>
-                    <TableCell align="right">{row.category}</TableCell>
-                    <TableCell align="right">{row.publisher}</TableCell>
-                    <TableCell align="center">{row.synopsis}</TableCell>
-                    <TableCell align="right">{row.price}</TableCell>
-                    <TableCell align="right">{row.stack_count}</TableCell>
-                    <EditOutlinedIcon
-                      style={{ marginTop: "24px", marginLeft: "10px" }}
-                      onClick={() => setEditing(true)}
-                    />
-                    <DeleteOutlinedIcon
-                      style={{ marginTop: "24px", marginLeft: "10px" }}
-                    />
+                    <TableRow>
+                      <StyledTableCell align="right">
+                        {props.counter}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.book_title}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.ISBN}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.author}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.category}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.publisher}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.synopsis}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.price}
+                      </StyledTableCell>
+                      <StyledTableCell align="right">
+                        {row.stack_count}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Tooltip title="Edit">
+                          <EditOutlinedIcon
+                            color="primary"
+                            style={{ marginLeft: "15px" }}
+                            onClick={() => setEditing(true)}
+                          />
+                        </Tooltip>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Tooltip title="Delete">
+                          <DeleteOutlinedIcon
+                            color="primary"
+                            // style={{ marginTop: "24px", marginLeft: "10px" }}
+                          />
+                        </Tooltip>
+                      </StyledTableCell>
+                    </TableRow>
                   </TableBody>
                 )}
               </Table>
             </Box>
           </Collapse>
-        </TableCell>
+        </StyledTableCell>
       </TableRow>
     </React.Fragment>
   );
@@ -187,17 +223,18 @@ export default function AdminTable({ book }) {
 
   return (
     <TableContainer component={Paper}>
+      <AdminHeader book={book} />
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
-            <TableCell>No</TableCell>
-            <TableCell>Book Title</TableCell>
-            <TableCell align="right">ISBN</TableCell>
-            <TableCell align="right">Author</TableCell>
-            <TableCell align="right">Publisher</TableCell>
-            <TableCell align="right">Category</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <StyledTableCell />
+            <StyledTableCell>No</StyledTableCell>
+            <StyledTableCell>Book Title</StyledTableCell>
+            <StyledTableCell align="right">ISBN</StyledTableCell>
+            <StyledTableCell align="right">Author</StyledTableCell>
+            <StyledTableCell align="right">Publisher</StyledTableCell>
+            <StyledTableCell align="right">Category</StyledTableCell>
+            <StyledTableCell align="right">Price</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

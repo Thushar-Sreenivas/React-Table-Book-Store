@@ -20,14 +20,18 @@ const useStyles = makeStyles({
 
   card: {
     display: "flex",
-    backgroundColor: "#11cdef",
+    // backgroundColor: "#11cdef",
+    backgroundColor: "#172b4d",
+    // background: 'rgb(86,103,221)',
+    // background: 'linear-gradient(90deg, rgba(86,103,221,1) 0%, rgba(94,203,247,1) 100%)',
+    color: 'black',
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
     width: "auto",
     height: "auto",
-    margin: "50px 50px 10px 50px",
+    // margin: "50px 50px 10px 50px",
     // padding: '40px',
-    borderRadius: "15px",
+    // borderRadius: "15px",
     // boxShadow:
     //   "5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22)",
     boxShadow: "6px 10px 5px -1px rgba(23,43,77,0.84)",
@@ -43,7 +47,6 @@ export default function AdminHeader({book}) {
     <closeAddContext.Provider value={addCloseHook}>
       <div className={classes.root}>
         <div className={classes.card}>
-          <h1>Book Store</h1>
           <SortBook />
           <FilterBook book={book} />
           <AddBook />
