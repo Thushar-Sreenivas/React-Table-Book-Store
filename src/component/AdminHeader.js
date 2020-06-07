@@ -9,6 +9,7 @@ import SortBook from "./SortBook";
 import FilterBook from "./Filter";
 // import { AddBookHandler } from "./AddBook";
 import AddUpdateBook from "../component/AddUpdateBook";
+import AddBook from "./AddBook";
 
 
 const useStyles = makeStyles({
@@ -40,10 +41,11 @@ export default function AdminHeader({book}) {
   return (
     <div className={classes.root}>
       <div className={classes.card}>
-        <h1>Admin Table</h1>
+        <h1>Book Store</h1>
         <SortBook />
         <FilterBook book={book} />
         {/* <AddBookHandler /> */}
+        <AddBook />
       </div>
     </div>
   );

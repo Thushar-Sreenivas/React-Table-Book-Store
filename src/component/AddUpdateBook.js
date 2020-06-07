@@ -77,7 +77,7 @@ export default function AddUpdateBook({
       .catch((error) => {
         console.log(error.response);
       });
-    event.preventDefault();
+    // event.preventDefault();
   }
 
   return (
