@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import AddUpdateBook from './AddUpdateBook'
 import AddIcon from "@material-ui/icons/Add";
+import { closeAddContext } from "../Context";
 
  function AddBook () {
-    let [addBook, setAddBook] = useState(false);
+    let [addBook, setAddBook] = useContext(closeAddContext)
     return (
       <>
         {addBook ? (

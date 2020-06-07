@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import URLContext from "./Context";
-// const urlHook = useState("http://localhost:3000/book/");
+
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <URLContext.Provider value={urlHook}> */}
       <App />
-    {/* </URLContext.Provider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

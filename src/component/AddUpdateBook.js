@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Axios from "axios";
 import qs from "qs";
 import TextField from "@material-ui/core/TextField";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import { closeModalContext, closeAddContext } from "../Context";
 
 export default function AddUpdateBook({
   req = "post",
@@ -17,18 +18,18 @@ export default function AddUpdateBook({
   stack_count,
 }) {
   
-  const StyledTextField = withStyles((theme) => ({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 41,
-      padding: 20,
-      margin: 20,
-      display: "inlineBlock",
-    },
-  }))(TextField);
+  // const StyledTextField = withStyles((theme) => ({
+  //   head: {
+  //     backgroundColor: theme.palette.common.black,
+  //     color: theme.palette.common.white,
+  //   },
+  //   body: {
+  //     fontSize: 41,
+  //     padding: 20,
+  //     margin: 20,
+  //     display: "inlineBlock",
+  //   },
+  // }))(TextField);
 
   const [book, setBook] = useState({
     ISBN: null,
@@ -43,7 +44,8 @@ export default function AddUpdateBook({
 
   let urlParam = "http://localhost:3000/book/";
   if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-
+  const [editing, setEditing] = useContext(closeModalContext);
+  const [add, setAdd] = useContext(closeAddContext)
   function handleChange(event) {
     const value = event.target.value;
     setBook({
@@ -77,6 +79,8 @@ export default function AddUpdateBook({
       .catch((error) => {
         console.log(error.response);
       });
+      setEditing(false)
+      setAdd(false)
     // event.preventDefault();
   }
 
@@ -108,7 +112,7 @@ export default function AddUpdateBook({
       <TextField
         // id="standard-basic"
         label="category"
-        name="publisher"
+        name="category"
         defaultValue={category}
         onChange={handleChange}
       />

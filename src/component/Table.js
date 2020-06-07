@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -19,6 +19,7 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import AddUpdateBook from "../component/AddUpdateBook";
+import { closeModalContext } from "../Context";
 // import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -28,12 +29,12 @@ import AddUpdateBook from "../component/AddUpdateBook";
 //   },
 // });
 
-const StyledTableCell = withStyles((theme) => ({
+const StyledTableCell = withStyles(() => ({
   head: {
     backgroundColor: "#172b4d",
 
     // backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    color: 'white',
   },
   body: {
     fontSize: 21,
@@ -70,7 +71,8 @@ const useStyles = makeStyles({
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
-  const [editing, setEditing] = useState(false);
+  // const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useContext(closeModalContext)
   const classes = useStyles();
   let counter = 1;
 
@@ -78,32 +80,29 @@ function Row(props) {
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell>
-          <IconButton
-            color="primary"
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
+            <IconButton
+              color="primary"
+              aria-label="expand row"
+              size="small"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            </IconButton>
         </TableCell>
-        <StyledTableCell component="th" scope="row">
+        <TableCell component="th" scope="row">
           {props.counter}
-        </StyledTableCell>
-        <StyledTableCell component="th" scope="row">
+        </TableCell>
+        <TableCell component="th" scope="row">
           {row.book_title}
-        </StyledTableCell>
-        <StyledTableCell align="right">{row.ISBN}</StyledTableCell>
-        <StyledTableCell align="right">{row.author}</StyledTableCell>
-        <StyledTableCell align="right">{row.publisher}</StyledTableCell>
-        <StyledTableCell align="right">{row.category}</StyledTableCell>
-        <StyledTableCell align="right">{row.price}</StyledTableCell>
+        </TableCell>
+        <TableCell align="right">{row.ISBN}</TableCell>
+        <TableCell align="right">{row.author}</TableCell>
+        <TableCell align="right">{row.publisher}</TableCell>
+        <TableCell align="right">{row.category}</TableCell>
+        <TableCell align="right">{row.price}</TableCell>
       </TableRow>
       <TableRow>
-        <StyledTableCell
-          style={{ paddingBottom: 0, paddingTop: 0 }}
-          colSpan={9}
-        >
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={9}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
@@ -112,16 +111,16 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell>No</StyledTableCell>
-                    <StyledTableCell>Book Title</StyledTableCell>
-                    <StyledTableCell align="right">ISBN</StyledTableCell>
-                    <StyledTableCell align="right">Author</StyledTableCell>
-                    <StyledTableCell align="right">Category</StyledTableCell>
-                    <StyledTableCell align="right">Publisher</StyledTableCell>
-                    <StyledTableCell align="center">Synopsis</StyledTableCell>
-                    <StyledTableCell align="right">Price</StyledTableCell>
-                    <StyledTableCell align="right">Stack Count</StyledTableCell>
-                    <StyledTableCell align="right">Actions</StyledTableCell>
+                    <TableCell>No</TableCell>
+                    <TableCell>Book Title</TableCell>
+                    <TableCell align="right">ISBN</TableCell>
+                    <TableCell align="right">Author</TableCell>
+                    <TableCell align="right">Category</TableCell>
+                    <TableCell align="right">Publisher</TableCell>
+                    <TableCell align="center">Synopsis</TableCell>
+                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Stack Count</TableCell>
+                    <TableCell align="right">Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 {editing ? (
@@ -138,29 +137,15 @@ function Row(props) {
                   />
                 ) : (
                   <TableBody>
-                    <StyledTableCell align="right">
-                      {props.counter}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.book_title}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.ISBN}</StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.author}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.category}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.publisher}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.synopsis}
-                    </StyledTableCell>
-                    <StyledTableCell align="right">{row.price}</StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.stack_count}
-                    </StyledTableCell>
+                    <TableCell align="right">{props.counter}</TableCell>
+                    <TableCell align="right">{row.book_title}</TableCell>
+                    <TableCell align="right">{row.ISBN}</TableCell>
+                    <TableCell align="right">{row.author}</TableCell>
+                    <TableCell align="right">{row.category}</TableCell>
+                    <TableCell align="right">{row.publisher}</TableCell>
+                    <TableCell align="center">{row.synopsis}</TableCell>
+                    <TableCell align="right">{row.price}</TableCell>
+                    <TableCell align="right">{row.stack_count}</TableCell>
                     <EditOutlinedIcon
                       style={{ marginTop: "24px", marginLeft: "10px" }}
                       onClick={() => setEditing(true)}
@@ -173,7 +158,7 @@ function Row(props) {
               </Table>
             </Box>
           </Collapse>
-        </StyledTableCell>
+        </TableCell>
       </TableRow>
     </React.Fragment>
   );
@@ -205,17 +190,16 @@ export default function AdminTable({ book }) {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <StyledTableCell />
-            <StyledTableCell>No</StyledTableCell>
-            <StyledTableCell>Book Title</StyledTableCell>
-            <StyledTableCell align="right">ISBN</StyledTableCell>
-            <StyledTableCell align="right">Author</StyledTableCell>
-            <StyledTableCell align="right">Publisher</StyledTableCell>
-            <StyledTableCell align="right">Category</StyledTableCell>
-            <StyledTableCell align="right">Price</StyledTableCell>
+            <TableCell />
+            <TableCell>No</TableCell>
+            <TableCell>Book Title</TableCell>
+            <TableCell align="right">ISBN</TableCell>
+            <TableCell align="right">Author</TableCell>
+            <TableCell align="right">Publisher</TableCell>
+            <TableCell align="right">Category</TableCell>
+            <TableCell align="right">Price</TableCell>
           </TableRow>
         </TableHead>
-
         <TableBody>
           {book.map((row) => (
             <Row key={row.ISBN} row={row} counter={counter++} />

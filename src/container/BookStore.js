@@ -5,10 +5,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardHeader from "@material-ui/core/CardHeader";
 import CollapsibleTable from "../container/adminTableCollapisble";
 import React, { useState, useEffect, useContext } from "react";
-import URLContext from "../Context";
+import {URLContext} from "../Context";
 import Axios from "axios";
 import AdminHeader from "../component/AdminHeader";
 import AdminTable from "../component/Table";
+import {closeModalContext} from '../Context'
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -48,17 +49,16 @@ export default function BookStore() {
     getBookAsync();
   }, [bookURL]);
   const classes = useStyles();
+  const modalCloseHook = useState(false)
   return (
-    <Card className={classes.root}>
-      {/* <CardHeader>
-        <h1>Card tables</h1>
-      </CardHeader> */}
-      <AdminHeader book={book} />
-      <CardContent className={classes.card}>
-        {/* <CollapsibleTable book={book} /> */}
-        <AdminTable book={book} />
-      </CardContent>
-    </Card>
+    <closeModalContext.Provider value={modalCloseHook}>
+      <Card className={classes.root}>
+        <AdminHeader book={book} />
+        <CardContent className={classes.card}>
+          <AdminTable book={book} />
+        </CardContent>
+      </Card>
+    </closeModalContext.Provider>
   );
 }
 

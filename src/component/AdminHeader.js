@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -10,6 +10,7 @@ import FilterBook from "./Filter";
 // import { AddBookHandler } from "./AddBook";
 import AddUpdateBook from "../component/AddUpdateBook";
 import AddBook from "./AddBook";
+import { closeAddContext } from "../Context";
 
 
 const useStyles = makeStyles({
@@ -37,16 +38,17 @@ const useStyles = makeStyles({
 export default function AdminHeader({book}) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
-
+  const addCloseHook = useState(false)
   return (
-    <div className={classes.root}>
-      <div className={classes.card}>
-        <h1>Book Store</h1>
-        <SortBook />
-        <FilterBook book={book} />
-        {/* <AddBookHandler /> */}
-        <AddBook />
+    <closeAddContext.Provider value={addCloseHook}>
+      <div className={classes.root}>
+        <div className={classes.card}>
+          <h1>Book Store</h1>
+          <SortBook />
+          <FilterBook book={book} />
+          <AddBook />
+        </div>
       </div>
-    </div>
+    </closeAddContext.Provider>
   );
 }

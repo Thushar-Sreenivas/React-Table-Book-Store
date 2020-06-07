@@ -1,7 +1,9 @@
 import {createContext} from 'react'
 
-const URLContext = createContext(['http://localhost:3000/book/',() => {}]);
+export const URLContext = createContext(['http://localhost:3000/book/',() => {}]);
 
-const closeModalContext = createContext([false, () => {}])
+export const closeModalContext = createContext([false, () => {}])
 
-export default URLContext
+export const closeAddContext = createContext([false, () => {}]);
+
+
