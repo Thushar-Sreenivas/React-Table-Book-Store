@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import URLContext from './Context'
 import SimpleCard from './component/Card';
+import BookStore from './container/BookStore';
 function App() {
 
   const urlHook = useState("http://localhost:3000/book/");
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <URLContext.Provider value={urlHook}>
         <SimpleCard />
+        <BookStore />
       </URLContext.Provider>
     </div>
   );

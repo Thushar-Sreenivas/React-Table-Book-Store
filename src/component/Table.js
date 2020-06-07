@@ -18,7 +18,7 @@ import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import AddUpdateBook from '../component/AddUpdateBook'
+import AddUpdateBook from "../component/AddUpdateBook";
 // import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -31,7 +31,7 @@ import AddUpdateBook from '../component/AddUpdateBook'
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#172b4d",
-    
+
     // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
@@ -197,9 +197,7 @@ function Row(props) {
 //   }).isRequired,
 // };
 
-
-
-export default function CollapsibleTable({ book }) {
+export default function AdminTable({ book }) {
   let counter = 1;
 
   return (

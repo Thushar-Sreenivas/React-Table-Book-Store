@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import SimpleSelect from "./sort";
+import SortBook from "./SortBook";
 import FilterBook from "./Filter";
 // import { AddBookHandler } from "./AddBook";
 import AddUpdateBook from "../component/AddUpdateBook";
@@ -41,7 +41,7 @@ export default function AdminHeader({book}) {
     <div className={classes.root}>
       <div className={classes.card}>
         <h1>Admin Table</h1>
-        <SimpleSelect />
+        <SortBook />
         <FilterBook book={book} />
         {/* <AddBookHandler /> */}
       </div>

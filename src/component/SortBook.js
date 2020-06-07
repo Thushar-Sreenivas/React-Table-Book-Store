@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function SimpleSelect() {
+export default function SortBook() {
   const classes = useStyles();
   const [sort, setSort] = React.useState('');
   const [url, setURL] = useContext(URLContext)
