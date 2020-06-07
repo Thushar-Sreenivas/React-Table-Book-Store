@@ -19,6 +19,7 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { AddBookHandler } from "../component/AddBook";
+import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
 //     '& > *': {
@@ -29,7 +30,8 @@ import { AddBookHandler } from "../component/AddBook";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: "#172b4d",
+    // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
   body: {
@@ -66,7 +68,6 @@ const useStyles = makeStyles({
 
 function Row(props) {
   const { row } = props;
-  // console.log("Row -> row", row)
   const [open, setOpen] = React.useState(false);
   const [editing, setEditing] = useState(false);
   const classes = useStyles();
@@ -77,6 +78,7 @@ function Row(props) {
       <TableRow className={classes.root}>
         <TableCell>
           <IconButton
+            color="primary"
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
@@ -122,23 +124,6 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 {editing ? (
-                  // <TableBody style={{display: 'grid', gridAutoFlow: 'row-dense'}}>
-                  // <StyledTextField id="standard-basic" label='Book Title' name={row.book_title}
-                  // value={row.book_title} />
-                  // <StyledTextField id="standard-basic" label='ISBN' name={row.ISBN}
-                  // value={row.ISBN} />
-                  // <StyledTextField id="standard-basic" label='author' name={row.author}
-                  // value={row.author} />
-                  // <StyledTextField id="standard-basic" label='category' name={row.category}
-                  // value={row.category} />
-                  // <StyledTextField id="standard-basic" label='publisher' name={row.publisher}
-                  // value={row.publisher} />
-                  // <StyledTextField id="standard-basic" label='synopsis' name={row.synopsis}
-                  // value={row.synopsis} />
-                  // <StyledTextField id="standard-basic" label='stack_count' name={row.stack_count}
-                  // value={row.stack_count} />
-                  // <CheckCircleOutlineIcon onClick={() => setEditing(false)}/>
-                  // </TableBody>
                   <AddBookHandler
                     req="put"
                     ISBN={row.ISBN}
@@ -158,9 +143,7 @@ function Row(props) {
                     <StyledTableCell align="right">
                       {row.book_title}
                     </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.ISBN}
-                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.ISBN}</StyledTableCell>
                     <StyledTableCell align="right">
                       {row.author}
                     </StyledTableCell>
@@ -173,9 +156,7 @@ function Row(props) {
                     <StyledTableCell align="center">
                       {row.synopsis}
                     </StyledTableCell>
-                    <StyledTableCell align="right">
-                      {row.price}
-                    </StyledTableCell>
+                    <StyledTableCell align="right">{row.price}</StyledTableCell>
                     <StyledTableCell align="right">
                       {row.stack_count}
                     </StyledTableCell>
@@ -215,59 +196,11 @@ function Row(props) {
 //   }).isRequired,
 // };
 
-// function EnhancedTableHead(props) {
-//   const {  order, orderBy, onRequestSort } = props;
-//   const createSortHandler = (property) => (event) => {
-//     onRequestSort(event, property);
-//   };
-//   return (
-//     <TableHead>
-//       <TableRow>
-//         <TableCell padding="checkbox">
-//           {/* <Checkbox
-//             // indeterminate={numSelected > 0 && numSelected < rowCount}
-//             // checked={rowCount > 0 && numSelected === rowCount}
-//             onChange={onSelectAllClick}
-//             inputProps={{ 'aria-label': 'select all desserts' }}
-//           /> */}
-//         </TableCell>
-//         {headCells.map((headCell) => (
-//           <TableCell
-//             key={headCell.id}
-//             align={headCell.numeric ? 'right' : 'left'}
-//             padding={headCell.disablePadding ? 'none' : 'default'}
-//             sortDirection={orderBy === headCell.id ? order : false}
-//           >
-//             <TableSortLabel
-//               active={orderBy === headCell.id}
-//               direction={orderBy === headCell.id ? order : 'asc'}
-//               onClick={createSortHandler(headCell.id)}
-//             >
-//               {headCell.label}
-//               {orderBy === headCell.id ? (
-//                 <span className={classes.visuallyHidden}>
-//                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-//                 </span>
-//               ) : null}
-//             </TableSortLabel>
-//           </TableCell>
-//         ))}
-//       </TableRow>
-//     </TableHead>
-//   );
-// }
+
 
 export default function CollapsibleTable({ book }) {
   let counter = 1;
 
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("book_title");
-
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === "asc";
-    setOrder(isAsc ? "desc" : "asc");
-    setOrderBy(property);
-  };
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
