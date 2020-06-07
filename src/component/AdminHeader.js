@@ -17,23 +17,22 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
   },
-
   card: {
     display: "flex",
     // backgroundColor: "#11cdef",
-    backgroundColor: "#172b4d",
-    // background: 'rgb(86,103,221)',
-    // background: 'linear-gradient(90deg, rgba(86,103,221,1) 0%, rgba(94,203,247,1) 100%)',
+    // backgroundColor: "#172b4d",
+    background: 'rgb(86,103,221)',
+    background: 'linear-gradient(90deg, rgba(86,103,221,1) 0%, rgba(94,203,247,1) 100%)',
     color: 'black',
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
     width: "auto",
     height: "auto",
-    // margin: "50px 50px 10px 50px",
+    // margin: "50px 700px 10px 700px",
     // padding: '40px',
     // borderRadius: "15px",
-    // boxShadow:
-    //   "5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22)",
+    boxShadow:
+      "5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22)",
     boxShadow: "6px 10px 5px -1px rgba(23,43,77,0.84)",
     cursor: "pointer",
   },
@@ -41,17 +40,14 @@ const useStyles = makeStyles({
 
 export default function AdminHeader({book}) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const addCloseHook = useState(false)
   return (
     <closeAddContext.Provider value={addCloseHook}>
-      <div className={classes.root}>
-        <div className={classes.card}>
-          <SortBook />
-          <FilterBook book={book} />
-          <AddBook />
-        </div>
-      </div>
+      <Card className={classes.card}>
+        <SortBook  />
+        <FilterBook book={book} />
+        <AddBook />
+      </Card>
     </closeAddContext.Provider>
   );
 }

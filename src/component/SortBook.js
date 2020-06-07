@@ -11,28 +11,26 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+    marginLeft: "20px",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   dropDown: {
-    color: 'white',
-  }
+    color: "white",
+    // marginLeft: '20px',
+  },
 }));
 
 export default function SortBook() {
   const classes = useStyles();
   const [sort, setSort] = React.useState('');
   const [url, setURL] = useContext(URLContext)
-  // console.log("SimpleSelect -> url", url)
   
   const handleChange = (event) => {
     setSort(event.target.value);
-    // setURL(`http://localhost:3000/book/?sort=${sort}`);
-    // onSubmitHandler()
   };
   
-    // console.log("SimpleSelect -> sort", sort);
   const onSubmitHandler = () => {
     setURL(`http://localhost:3000/book/?sort=${sort}`);
   }
@@ -45,16 +43,17 @@ export default function SortBook() {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
+          className={classes.dropDown}
           value={sort}
           onChange={handleChange}
-          // onClose={onSubmitHandler}
+          renderValue={onSubmitHandler}
         >
           <MenuItem value="book_title">Book Title</MenuItem>
           <MenuItem value="ISBN">ISBN</MenuItem>
           <MenuItem value="price">Price</MenuItem>
         </Select>
       </FormControl>
-      <CheckCircleOutlineIcon onClick={onSubmitHandler} />
+      {/* <CheckCircleOutlineIcon onClick={onSubmitHandler} /> */}
     </div>
   );
       }

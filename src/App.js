@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {URLContext} from './Context'
-import SimpleCard from './component/Card';
 import BookStore from './container/BookStore';
 function App() {
 

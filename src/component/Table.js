@@ -22,6 +22,7 @@ import AddUpdateBook from "../component/AddUpdateBook";
 import { closeModalContext } from "../Context";
 import Tooltip from "@material-ui/core/Tooltip";
 import AdminHeader from './AdminHeader'
+import AddBook from "./AddBook";
 // import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -223,7 +224,8 @@ export default function AdminTable({ book }) {
 
   return (
     <TableContainer component={Paper}>
-      <AdminHeader book={book} />
+      {/* <AdminHeader book={book} /> */}
+      {/* <AddBook /> */}
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>

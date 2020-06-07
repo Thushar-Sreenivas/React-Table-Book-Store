@@ -46,16 +46,19 @@ export default function FilterBook({book}) {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select-filter"
+          className={classes.dropDown}
           value={filter}
           onChange={handleFilterChange}
+          renderValue={onSumbitHandler}
         >
           {book.map((row) => (
-              <MenuItem key={row.ISBN} value={row.category}>{row.category}</MenuItem>
+            <MenuItem key={row.ISBN} value={row.category}>
+              {row.category}
+            </MenuItem>
           ))}
         </Select>
-        <CheckCircleOutlineIcon onClick={onSumbitHandler} />
+        {/* <CheckCircleOutlineIcon onClick={onSumbitHandler} /> */}
       </FormControl>
-      <p>{filter}</p>
     </div>
   );
 }

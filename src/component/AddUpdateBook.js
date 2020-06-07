@@ -6,6 +6,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { closeModalContext, closeAddContext } from "../Context";
 import TableCell from "@material-ui/core/TableCell";
+import { Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles({
   container: {
@@ -35,22 +36,8 @@ export default function AddUpdateBook({
   stack_count,
 }) {
   
-  // const StyledTextField = withStyles((theme) => ({
-  //   head: {
-  //     backgroundColor: theme.palette.common.black,
-  //     color: theme.palette.common.white,
-  //   },
-  //   body: {
-  //     fontSize: 41,
-  //     padding: 20,
-  //     margin: 20,
-  //     display: "inlineBlock",
-  //   },
-  // }))(TextField);
 
-
-  
-    const classes = useStyles();
+  const classes = useStyles();
 
   const [book, setBook] = useState({
     ISBN: null,
@@ -108,7 +95,6 @@ export default function AddUpdateBook({
 
   return (
     <TableCell className={classes.container}>
-      {/* <h1 className={classes.root}>Hello</h1> */}
       <TextField
         className={classes.item}
         // id="standard-basic"
@@ -118,7 +104,7 @@ export default function AddUpdateBook({
         onChange={handleChange}
         // fullWidth='true'
       />
-      <p>{book.ISBN}</p>
+      
       <TextField
         className={classes.item}
         // id="standard-basic"
@@ -175,7 +161,9 @@ export default function AddUpdateBook({
         defaultValue={stack_count}
         onChange={handleChange}
       />
+      <Tooltip title="Done">
       <CheckCircleOutlineIcon onClick={onSubmitHandler} />
+      </Tooltip>
     </TableCell>
   );
 }
