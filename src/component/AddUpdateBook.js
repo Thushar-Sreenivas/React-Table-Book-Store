@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
-export function AddBookHandler({
+export default function AddUpdateBook({
   req = "post",
   ISBN,
   book_title,

@@ -18,7 +18,7 @@ import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 import TextField from "@material-ui/core/TextField";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
-import { AddBookHandler } from "../component/AddBook";
+import AddUpdateBook from '../component/AddUpdateBook'
 import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -31,6 +31,7 @@ import SimpleSelect from "../component/sort";
 const StyledTableCell = withStyles((theme) => ({
   head: {
     backgroundColor: "#172b4d",
+    
     // backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
   },
@@ -124,7 +125,7 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 {editing ? (
-                  <AddBookHandler
+                  <AddUpdateBook
                     req="put"
                     ISBN={row.ISBN}
                     book_title={row.book_title}

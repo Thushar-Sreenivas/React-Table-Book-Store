@@ -11,16 +11,18 @@ import AdminHeader from "./AdminHeader";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    // backgroundImage: "linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%)",
   },
 
   card: {
     // backgroundColor: "#181A1B",
     backgroundColor: "#172b4d",
+
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
     width: "auto",
     height: "auto",
-    margin: "500px 50px 100px 50px",
+    margin: "70px 50px 100px 50px",
     // padding: '40px',
     borderRadius: "15px",
     boxShadow:
@@ -47,10 +49,10 @@ export default function SimpleCard() {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <CardHeader>
+      {/* <CardHeader>
         <h1>Card tables</h1>
-      </CardHeader>
-      <AdminHeader />
+      </CardHeader> */}
+      <AdminHeader book={book}/>
       <CardContent className={classes.card}>
         <CollapsibleTable book={book} />
       </CardContent>

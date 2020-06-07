@@ -5,6 +5,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import SimpleSelect from "./sort";
+import FilterBook from "./Filter";
+// import { AddBookHandler } from "./AddBook";
+import AddUpdateBook from "../component/AddUpdateBook";
+
 
 const useStyles = makeStyles({
   root: {
@@ -12,33 +17,34 @@ const useStyles = makeStyles({
   },
 
   card: {
-    display: 'flex',
-    backgroundColor: "#172b4d",
+    display: "flex",
+    backgroundColor: "#11cdef",
     fontFamily: "Roboto, sans-serif",
     textAlign: "center",
     width: "auto",
     height: "auto",
-    // margin: "500px 50px 100px 50px",
+    margin: "50px 50px 10px 50px",
     // padding: '40px',
     borderRadius: "15px",
-    boxShadow:
-      "5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22)",
+    // boxShadow:
+    //   "5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22)",
+    boxShadow: "6px 10px 5px -1px rgba(23,43,77,0.84)",
     cursor: "pointer",
   },
 });
 
-export default function AdminHeader() {
+export default function AdminHeader({book}) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
-    <Card className={classes.root}>
-      <CardContent className={classes.card}>
+    <div className={classes.root}>
+      <div className={classes.card}>
         <h1>Admin Table</h1>
-        <h1>Sort</h1>
-        <h1>Filter</h1>
-        <h1>Add</h1>
-      </CardContent>
-    </Card>
+        <SimpleSelect />
+        <FilterBook book={book} />
+        {/* <AddBookHandler /> */}
+      </div>
+    </div>
   );
 }

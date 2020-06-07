@@ -1,5 +1,5 @@
 import React,{useState, useContext} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, withTheme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -16,39 +16,46 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  dropDown: {
+    color: 'white',
+  }
 }));
 
 export default function SimpleSelect() {
   const classes = useStyles();
   const [sort, setSort] = React.useState('');
-  
   const [url, setURL] = useContext(URLContext)
-  console.log("SimpleSelect -> url", url)
+  // console.log("SimpleSelect -> url", url)
   
   const handleChange = (event) => {
     setSort(event.target.value);
+    // setURL(`http://localhost:3000/book/?sort=${sort}`);
+    // onSubmitHandler()
   };
-    console.log("SimpleSelect -> sort", sort);
-  const onSumbitHandler = () => {
+  
+    // console.log("SimpleSelect -> sort", sort);
+  const onSubmitHandler = () => {
     setURL(`http://localhost:3000/book/?sort=${sort}`);
   }
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Sort</InputLabel>
+        <InputLabel className={classes.dropDown} id="demo-simple-select-label">
+          Sort
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={sort}
           onChange={handleChange}
+          // onClose={onSubmitHandler}
         >
           <MenuItem value="book_title">Book Title</MenuItem>
           <MenuItem value="ISBN">ISBN</MenuItem>
-          <MenuItem value='price'>Price</MenuItem>
+          <MenuItem value="price">Price</MenuItem>
         </Select>
-        <CheckCircleOutlineIcon onClick={onSumbitHandler} />
       </FormControl>
-      <p>{sort}</p>
+      <CheckCircleOutlineIcon onClick={onSubmitHandler} />
     </div>
   );
       }
