@@ -8,6 +8,7 @@ import { closeModalContext, closeAddContext } from "../Context";
 import TableCell from "@material-ui/core/TableCell";
 import { Tooltip } from "@material-ui/core";
 import { URLContext } from "../Context";
+import SortBook from "./SortBook";
 
 const useStyles = makeStyles({
   container: {
@@ -54,13 +55,20 @@ export default function AddUpdateBook({
 
   // let urlParam = "http://localhost:3000/book/";
   // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-  const [urlParam, setURLParam] = useContext(URLContext);
+
+const [urlParam, setURLParam] = useContext(URLContext);
+if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
+// let urlParam = "http://localhost:3000/book/";
+// if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+
+  // const [urlParam, setURLParam] = useContext(URLContext);
   // let urlParam = "http://localhost:3000/book/";
   // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-  if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
+  // if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
   // const [editing, setEditing] = useContext(closeModalContext);
   const [add, setAdd] = useContext(closeAddContext)
-  
+  const [url, setURL] = useContext(URLContext);
+
   function handleChange(event) {
     const value = event.target.value;
     setBook({
@@ -90,6 +98,7 @@ export default function AddUpdateBook({
     })
       .then((response) => {
         console.log(response);
+       
       })
       .catch((error) => {
         console.log(error.response);
@@ -98,6 +107,9 @@ export default function AddUpdateBook({
       onChange(false)
       // setAdd(false)
     // event.preventDefault();
+      setTimeout(() => setURL('http://localhost:3000/book/?sort=book_title'), 1000);
+      // setURL('http://localhost:3000/book/?sort=ISBN');
+      // setURL("http://localhost:3000/book/?cat=Motivation");
   }
 
   return (
