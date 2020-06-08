@@ -42,15 +42,15 @@ export default function BookStore() {
   const [book, setBook] = useState([]);
   const [bookURL] = useContext(URLContext);
 
-  async function getBookAsync() {
-    try {
-      let response = await Axios.get(`${bookURL}`);
-      setBook(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
   useEffect(() => {
+    async function getBookAsync() {
+      try {
+        let response = await Axios.get(`${bookURL}`);
+        setBook(response.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
     getBookAsync();
   }, [bookURL]);
   const classes = useStyles();

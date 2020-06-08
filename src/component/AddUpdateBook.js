@@ -7,6 +7,7 @@ import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { closeModalContext, closeAddContext } from "../Context";
 import TableCell from "@material-ui/core/TableCell";
 import { Tooltip } from "@material-ui/core";
+import { URLContext } from "../Context";
 
 const useStyles = makeStyles({
   container: {
@@ -51,8 +52,12 @@ export default function AddUpdateBook({
     stack_count: null,
   });
 
-  let urlParam = "http://localhost:3000/book/";
-  if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+  // let urlParam = "http://localhost:3000/book/";
+  // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+  const [urlParam, setURLParam] = useContext(URLContext);
+  // let urlParam = "http://localhost:3000/book/";
+  // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+  if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
   // const [editing, setEditing] = useContext(closeModalContext);
   const [add, setAdd] = useContext(closeAddContext)
   
@@ -104,7 +109,7 @@ export default function AddUpdateBook({
         defaultValue={ISBN}
         onChange={handleChange}
         required
-        type="number"
+        // type="number"
         // fullWidth='true'
       />
 
@@ -153,7 +158,7 @@ export default function AddUpdateBook({
         defaultValue={price}
         onChange={handleChange}
         required
-        type="number"
+        // type="number"
       />
       <TextField
         className={classes.item}
@@ -162,7 +167,7 @@ export default function AddUpdateBook({
         defaultValue={stack_count}
         onChange={handleChange}
         required
-        type="number"
+        // type="number"
       />
       <Tooltip title="Done">
         <CheckCircleOutlineIcon onClick={onSubmitHandler} />

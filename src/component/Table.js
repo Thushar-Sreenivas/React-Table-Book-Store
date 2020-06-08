@@ -23,6 +23,9 @@ import { closeModalContext } from "../Context";
 import Tooltip from "@material-ui/core/Tooltip";
 import AdminHeader from './AdminHeader'
 import AddBook from "./AddBook";
+import { URLContext } from "../Context";
+import Axios from "axios";
+
 // import SimpleSelect from "../component/sort";
 // const useRowStyles = makeStyles({
 //   root: {
@@ -75,11 +78,18 @@ const useStyles = makeStyles({
 function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [url, setURL] = useContext(URLContext);
   // const [editing, setEditing] = useState(false);
   // const [editing, setEditing] = useContext(closeModalContext)
   const classes = useStyles();
   let counter = 1;
   const [editingBook, seteditingBook] = React.useState(false);
+
+   function DeleteBookHandler() {
+      Axios.delete(`${url}${row.ISBN}`);
+
+  }
+
 
   function handleChange(newValue) {
     seteditingBook(newValue);
@@ -190,6 +200,7 @@ function Row(props) {
                         <Tooltip title="Delete">
                           <DeleteOutlinedIcon
                             color="primary"
+                            onClick={DeleteBookHandler}
                             // style={{ marginTop: "24px", marginLeft: "10px" }}
                           />
                         </Tooltip>
