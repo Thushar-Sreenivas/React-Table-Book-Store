@@ -6,12 +6,17 @@ import Card from "@material-ui/core/Card";
 import { Tooltip } from '@material-ui/core';
 
  function AddBook () {
-    let [addBook, setAddBook] = useContext(closeAddContext) 
+    let [addBook, setAddBook] = React.useState(false);
     // let [addBook, setAddBook] = useState(false);
+    // const [editingBook, seteditingBook] = 
+
+    function handleChange(newValue) {
+      setAddBook(newValue);
+    }
     return (
       <>
         {addBook ? (
-          <AddUpdateBook />
+          <AddUpdateBook onChange={handleChange} />
         ) : (
           <Tooltip title="Add Book">
             <AddIcon

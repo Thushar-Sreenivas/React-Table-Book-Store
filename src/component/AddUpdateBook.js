@@ -34,6 +34,7 @@ export default function AddUpdateBook({
   synopsis,
   price,
   stack_count,
+  onChange
 }) {
   
 
@@ -52,7 +53,7 @@ export default function AddUpdateBook({
 
   let urlParam = "http://localhost:3000/book/";
   if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-  const [editing, setEditing] = useContext(closeModalContext);
+  // const [editing, setEditing] = useContext(closeModalContext);
   const [add, setAdd] = useContext(closeAddContext)
   
   function handleChange(event) {
@@ -88,8 +89,9 @@ export default function AddUpdateBook({
       .catch((error) => {
         console.log(error.response);
       });
-      setEditing(false)
-      setAdd(false)
+      // setEditing(false)
+      onChange(false)
+      // setAdd(false)
     // event.preventDefault();
   }
 
@@ -97,72 +99,73 @@ export default function AddUpdateBook({
     <TableCell className={classes.container}>
       <TextField
         className={classes.item}
-        // id="standard-basic"
         label="ISBN"
         name="ISBN"
         defaultValue={ISBN}
         onChange={handleChange}
+        required
+        type="number"
         // fullWidth='true'
       />
-      
+
       <TextField
         className={classes.item}
-        // id="standard-basic"
         label="Book Title"
         name="book_title"
         defaultValue={book_title}
         onChange={handleChange}
+        required
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="author"
+        label="Author"
         name="author"
         defaultValue={author}
         onChange={handleChange}
+        required
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="category"
+        label="Category"
         name="category"
         defaultValue={category}
         onChange={handleChange}
+        required
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="publisher"
+        label="Publisher"
         name="publisher"
         defaultValue={publisher}
         onChange={handleChange}
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="synopsis"
+        label="Synopsis"
         name="synopsis"
         defaultValue={synopsis}
         onChange={handleChange}
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="price"
+        label="Price"
         name="price"
         defaultValue={price}
         onChange={handleChange}
+        required
+        type="number"
       />
       <TextField
         className={classes.item}
-        // id="standard-basic"
-        label="stack_count"
+        label="Stack Count"
         name="stack_count"
         defaultValue={stack_count}
         onChange={handleChange}
+        required
+        type="number"
       />
       <Tooltip title="Done">
-      <CheckCircleOutlineIcon onClick={onSubmitHandler} />
+        <CheckCircleOutlineIcon onClick={onSubmitHandler} />
       </Tooltip>
     </TableCell>
   );

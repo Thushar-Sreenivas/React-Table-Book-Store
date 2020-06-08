@@ -76,10 +76,14 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   // const [editing, setEditing] = useState(false);
-  const [editing, setEditing] = useContext(closeModalContext)
+  // const [editing, setEditing] = useContext(closeModalContext)
   const classes = useStyles();
   let counter = 1;
+  const [editingBook, seteditingBook] = React.useState(false);
 
+  function handleChange(newValue) {
+    seteditingBook(newValue);
+  }
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
@@ -130,7 +134,7 @@ function Row(props) {
                     <StyledTableCell></StyledTableCell>
                   </TableRow>
                 </TableHead>
-                {editing ? (
+                {editingBook ? (
                   <AddUpdateBook
                     req="put"
                     ISBN={row.ISBN}
@@ -141,6 +145,7 @@ function Row(props) {
                     synopsis={row.synopsis}
                     price={row.price}
                     stack_count={row.stack_count}
+                    onChange={handleChange}
                   />
                 ) : (
                   <TableBody>
@@ -177,7 +182,7 @@ function Row(props) {
                           <EditOutlinedIcon
                             color="primary"
                             style={{ marginLeft: "15px" }}
-                            onClick={() => setEditing(true)}
+                            onClick={() => seteditingBook(true)}
                           />
                         </Tooltip>
                       </StyledTableCell>
