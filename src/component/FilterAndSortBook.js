@@ -26,12 +26,12 @@ export default function FilterAndSortBook({ book }) {
   const [filter, setFilter] = useState("");
   const [url, setURL] = useContext(URLContext);
   let mySetFilter = new Set();
-  
 
   book.map((row) => {
-    mySetFilter.add(row.category)
-  })
+    mySetFilter.add(row.category);
+  });
   let filterBook = Array.from(mySetFilter);
+  
   const handleSortChange = (event) => {
     setSort(event.target.value);
   };
