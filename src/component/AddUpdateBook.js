@@ -119,6 +119,8 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
         label="ISBN"
         name="ISBN"
         defaultValue={ISBN}
+        // inputProps={ISBN}
+        // value={ISBN}
         onChange={handleChange}
         required
         // type="number"

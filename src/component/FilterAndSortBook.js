@@ -51,7 +51,7 @@ export default function FilterAndSortBook({ book }) {
     <>
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.dropDown} id="demo-simple-select-label">
-          Sort
+          Sort {sort}
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -70,7 +70,7 @@ export default function FilterAndSortBook({ book }) {
 
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.dropDown} id="demo-simple-select-label">
-          Filter
+          Filter {filter}
         </InputLabel>
         <Select
           labelId="demo-simple-select-label"
