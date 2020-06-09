@@ -2,28 +2,22 @@ import React, { useState, useContext } from "react";
 import Axios from "axios";
 import qs from "qs";
 import TextField from "@material-ui/core/TextField";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import {  makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { closeModalContext, closeAddContext } from "../Context";
 import TableCell from "@material-ui/core/TableCell";
 import { Tooltip } from "@material-ui/core";
 import { URLContext } from "../Context";
-import SortBook from "./SortBook";
+// import SortBook from "./SortBook";
 
 const useStyles = makeStyles({
   container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    // justifyContent: 'spaceEvenly',
-    // alignContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+
+    alignItems: "center",
   },
-  item: {
-    // flexBasis: '10px'
-    // padding: '10px',
-    // margin: '20px',
-  }
 });
 
 export default function AddUpdateBook({
@@ -36,10 +30,8 @@ export default function AddUpdateBook({
   synopsis,
   price,
   stack_count,
-  onChange
+  onChange,
 }) {
-  
-
   const classes = useStyles();
 
   const [book, setBook] = useState({
@@ -53,20 +45,9 @@ export default function AddUpdateBook({
     stack_count: null,
   });
 
-  // let urlParam = "http://localhost:3000/book/";
-  // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+  const [urlParam, setURLParam] = useContext(URLContext);
+  if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
 
-const [urlParam, setURLParam] = useContext(URLContext);
-if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
-// let urlParam = "http://localhost:3000/book/";
-// if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-
-  // const [urlParam, setURLParam] = useContext(URLContext);
-  // let urlParam = "http://localhost:3000/book/";
-  // if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
-  // if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
-  // const [editing, setEditing] = useContext(closeModalContext);
-  const [add, setAdd] = useContext(closeAddContext)
   const [url, setURL] = useContext(URLContext);
 
   function handleChange(event) {
@@ -98,18 +79,16 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
     })
       .then((response) => {
         console.log(response);
-       
       })
       .catch((error) => {
         console.log(error.response);
       });
-      // setEditing(false)
-      onChange(false)
-      // setAdd(false)
-    // event.preventDefault();
-      setTimeout(() => setURL('http://localhost:3000/book/?sort=book_title'), 400);
-      // setURL('http://localhost:3000/book/?sort=ISBN');
-      // setURL("http://localhost:3000/book/?cat=Motivation");
+    onChange(false);
+
+    setTimeout(
+      () => setURL("http://localhost:3000/book/?sort=book_title"),
+      400
+    );
   }
 
   return (
@@ -119,12 +98,8 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
         label="ISBN"
         name="ISBN"
         defaultValue={ISBN}
-        // inputProps={ISBN}
-        // value={ISBN}
         onChange={handleChange}
         required
-        // type="number"
-        // fullWidth='true'
       />
 
       <TextField
@@ -172,7 +147,6 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
         defaultValue={price}
         onChange={handleChange}
         required
-        // type="number"
       />
       <TextField
         className={classes.item}
@@ -181,7 +155,6 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
         defaultValue={stack_count}
         onChange={handleChange}
         required
-        // type="number"
       />
       <Tooltip title="Done">
         <CheckCircleOutlineIcon onClick={onSubmitHandler} />
@@ -189,4 +162,3 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
     </TableCell>
   );
 }
-

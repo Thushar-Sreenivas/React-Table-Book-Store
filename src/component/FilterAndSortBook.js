@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
-import { makeStyles, withTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { URLContext } from "../Context";
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   dropDown: {
     color: "white",
-    // marginLeft: '20px',
   },
 }));
 
@@ -34,13 +32,6 @@ export default function FilterAndSortBook({ book }) {
 
   const onSubmitHandler = () => {
     setURL(`http://localhost:3000/book/?sort=${sort}&cat=${filter}`);
-  };
-  const sortandfilterSubmit = () => {
-    setURL(`http://localhost:3000/book/?sort=${sort}&cat=${filter}`);
-  };
-
-  const onSumbitHandler = () => {
-    setURL(`http://localhost:3000/book/?cat=${filter}`);
   };
 
   const handleFilterChange = (event) => {
@@ -66,7 +57,6 @@ export default function FilterAndSortBook({ book }) {
           <MenuItem value="price">Price</MenuItem>
         </Select>
       </FormControl>
-      {/* <CheckCircleOutlineIcon onClick={onSubmitHandler} /> */}
 
       <FormControl className={classes.formControl}>
         <InputLabel className={classes.dropDown} id="demo-simple-select-label">
@@ -86,7 +76,6 @@ export default function FilterAndSortBook({ book }) {
             </MenuItem>
           ))}
         </Select>
-        {/* <CheckCircleOutlineIcon onClick={onSumbitHandler} /> */}
       </FormControl>
     </>
   );
