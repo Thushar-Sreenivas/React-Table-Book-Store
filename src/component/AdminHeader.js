@@ -11,7 +11,7 @@ import FilterBook from "./Filter";
 import AddUpdateBook from "../component/AddUpdateBook";
 import AddBook from "./AddBook";
 import { closeAddContext } from "../Context";
-
+import FilterAndSortBook from './FilterAndSortBook'
 
 const useStyles = makeStyles({
   root: {
@@ -44,8 +44,9 @@ export default function AdminHeader({book}) {
   return (
     <closeAddContext.Provider value={addCloseHook}>
       <Card className={classes.card}>
-        <SortBook  />
-        <FilterBook book={book} />
+        {/* <SortBook /> */}
+        {/* <FilterBook book={book} /> */}
+        <FilterAndSortBook book={book} />
         <AddBook />
       </Card>
     </closeAddContext.Provider>

@@ -107,7 +107,7 @@ if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
       onChange(false)
       // setAdd(false)
     // event.preventDefault();
-      setTimeout(() => setURL('http://localhost:3000/book/?sort=book_title'), 1000);
+      setTimeout(() => setURL('http://localhost:3000/book/?sort=book_title'), 400);
       // setURL('http://localhost:3000/book/?sort=ISBN');
       // setURL("http://localhost:3000/book/?cat=Motivation");
   }

@@ -87,6 +87,10 @@ function Row(props) {
 
    function DeleteBookHandler() {
       Axios.delete(`${url}${row.ISBN}`);
+      setTimeout(
+        () => setURL("http://localhost:3000/book/?sort=book_title"),
+        400
+      );
 
   }
 
