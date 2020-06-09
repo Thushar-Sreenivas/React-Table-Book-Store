@@ -86,7 +86,10 @@ function Row(props) {
   const [editingBook, seteditingBook] = React.useState(false);
 
    function DeleteBookHandler() {
-      Axios.delete(`${url}${row.ISBN}`);
+      // Axios.delete(`${url}${row.ISBN}`);
+        setURL(`${url}${row.ISBN}`);
+        Axios.delete(`http://localhost:3000/book/${row.ISBN}`);
+
       setTimeout(
         () => setURL("http://localhost:3000/book/?sort=book_title"),
         400
