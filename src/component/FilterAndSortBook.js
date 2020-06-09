@@ -25,7 +25,13 @@ export default function FilterAndSortBook({ book }) {
   const [sort, setSort] = useState("");
   const [filter, setFilter] = useState("");
   const [url, setURL] = useContext(URLContext);
+  let mySetFilter = new Set();
+  
 
+  book.map((row) => {
+    mySetFilter.add(row.category)
+  })
+  let filterBook = Array.from(mySetFilter);
   const handleSortChange = (event) => {
     setSort(event.target.value);
   };
@@ -70,9 +76,10 @@ export default function FilterAndSortBook({ book }) {
           onChange={handleFilterChange}
           renderValue={onSubmitHandler}
         >
-          {book.map((row) => (
-            <MenuItem key={row.ISBN} value={row.category}>
-              {row.category}
+          {filterBook.map((row) => (
+            <MenuItem key={row} value={row}>
+              {/* <MenuItem key={row.ISBN} value={row.category}> */}
+              {row}
             </MenuItem>
           ))}
         </Select>
