@@ -34,6 +34,7 @@ export default function BookStore() {
     async function getBookAsync() {
       try {
         let response = await Axios.get(`${bookURL}`);
+        console.log("getBookAsync -> bookURL", bookURL)
         setBook(response.data);
       } catch (error) {
         console.log(error.message);
