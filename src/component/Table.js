@@ -14,26 +14,21 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-
 import AddUpdateBook from "../component/AddUpdateBook";
 import Tooltip from "@material-ui/core/Tooltip";
 import { URLContext } from "../Context";
 import Axios from "axios";
 
-
 const StyledTableCell = withStyles(() => ({
   head: {
     backgroundColor: "#172b4d",
-    
+
     color: "white",
   },
   body: {
     fontSize: 22,
   },
 }))(TableCell);
-
-
-
 
 const useStyles = makeStyles({
   table: {
@@ -45,22 +40,19 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = useState(false);
   const [url, setURL] = useContext(URLContext);
- 
+
   const classes = useStyles();
-  // let counter = 1;
   const [editingBook, seteditingBook] = useState(false);
 
-   function DeleteBookHandler() {
-        setURL(`${url}${row.ISBN}`);
-        Axios.delete(`http://localhost:3000/book/${row.ISBN}`);
+  function DeleteBookHandler() {
+    setURL(`${url}${row.ISBN}`);
+    Axios.delete(`http://localhost:3000/book/${row.ISBN}`);
 
-      setTimeout(
-        () => setURL("http://localhost:3000/book/?sort=book_title"),
-        400
-      );
-
+    setTimeout(
+      () => setURL("http://localhost:3000/book/?sort=book_title"),
+      400
+    );
   }
-
 
   function handleChange(newValue) {
     seteditingBook(newValue);
@@ -186,7 +178,6 @@ function Row(props) {
     </React.Fragment>
   );
 }
-
 
 export default function AdminTable({ book }) {
   let counter = 1;

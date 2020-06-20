@@ -6,7 +6,6 @@ import { URLContext } from "../Context";
 import Axios from "axios";
 import AdminHeader from "../component/AdminHeader";
 import AdminTable from "../component/Table";
-import { closeModalContext } from "../Context";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -44,10 +43,7 @@ export default function BookStore() {
     getBookAsync();
   }, [bookURL]);
   const classes = useStyles();
-  const modalCloseHook = useState(false);
   return (
-    
-    // <closeModalContext.Provider value={modalCloseHook}>
     <>
       <AdminHeader book={book} />
       <Card className={classes.root}>
@@ -55,7 +51,6 @@ export default function BookStore() {
           <AdminTable book={book} />
         </CardContent>
       </Card>
-      </>
-    // </closeModalContext.Provider>
+    </>
   );
 }

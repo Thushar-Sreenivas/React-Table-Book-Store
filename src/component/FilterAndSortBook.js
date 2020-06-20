@@ -38,11 +38,6 @@ export default function FilterAndSortBook({ book }) {
   };
 
   const onSubmitHandler = () => {
-    // console.log("onSubmitHandler -> cancelToggle", props);
-    // if (props) {
-    //   setURL(`http://localhost:3000/book/?sort=${sort}&cat=`);
-    //   console.log("onSubmitHandler -> setURL cancel", setURL);
-    // }
     setURL(`http://localhost:3000/book/?sort=${sort}&cat=${filter}`);
   };
 
@@ -88,7 +83,6 @@ export default function FilterAndSortBook({ book }) {
         >
           {filterBook.map((row) => (
             <MenuItem key={row} value={row}>
-              {/* <MenuItem key={row.ISBN} value={row.category}> */}
               {row}
             </MenuItem>
           ))}
