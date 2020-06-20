@@ -102,10 +102,17 @@ export default function AddUpdateBook({
              defaultValue={ISBN}
              // value={ISBN}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({
+               pattern: {
+                 value: /[0-9]+/,
+                 message: "Please Enter a Number",
+               },
+             })}
              required
            />
-           {errors.ISBN && <span>This field is required</span>}
+           {errors.ISBN && (
+             <span style={{ color: "red" }}>Please Enter a Number</span>
+           )}
            {/* <input
           type="string"
           name="patient_name"
@@ -119,7 +126,7 @@ export default function AddUpdateBook({
              name="book_title"
              defaultValue={book_title}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({ required: true })}
              required
            />
            {errors.book_title && <span>This field is required</span>}
@@ -140,7 +147,7 @@ export default function AddUpdateBook({
              name="category"
              defaultValue={category}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({ required: true })}
              required
            />
            {errors.category && <span>This field is required</span>}
@@ -150,8 +157,9 @@ export default function AddUpdateBook({
              name="publisher"
              defaultValue={publisher}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({ required: true })}
            />
+           {errors.publisher && <span>This field is required</span>}
            <TextField
              className={classes.item}
              label="Synopsis"
@@ -166,10 +174,19 @@ export default function AddUpdateBook({
              name="price"
              defaultValue={price}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({
+               pattern: {
+                 value: /^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/,
+                 message: "Please Enter a Number", // <p>error message</p>
+               },
+             })}
              required
            />
-           {errors.price && <span>This field is required</span>}
+           {errors.price && (
+             <span style={{ color: "red" }}>
+               Please Enter the Price in decimal
+             </span>
+           )}
 
            <TextField
              className={classes.item}
@@ -177,10 +194,17 @@ export default function AddUpdateBook({
              name="stack_count"
              defaultValue={stack_count}
              // onChange={handleChange}
-             inputRef={register}
+             inputRef={register({
+               pattern: {
+                 value: /[0-9]+/,
+                 message: "Please Enter a Number", // <p>error message</p>
+               },
+             })}
              required
            />
-           {errors.stack_count && <span>This field is required</span>}
+           {errors.stack_count && (
+             <span style={{ color: "red" }}>Please Enter a Number</span>
+           )}
 
            <Tooltip title="Submit">
              <TextField type="submit" />
