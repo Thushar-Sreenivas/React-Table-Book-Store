@@ -28,19 +28,25 @@ const useStyles = makeStyles({
 
 export default function BookStore() {
   const [book, setBook] = useState([]);
-  const [bookURL] = useContext(URLContext);
+  const [bookURL, setBookURL] = useContext(URLContext);
 
   useEffect(() => {
     async function getBookAsync() {
       try {
         let response = await Axios.get(`${bookURL}`);
-        console.log("getBookAsync -> bookURL", bookURL)
+        console.log("getBookAsync -> bookURL", bookURL);
+        // setBookURL("http://localhost:3000/book/1");
+        // console.log("getBookAsync -> bookURL", bookURL);
+
         setBook(response.data);
       } catch (error) {
         console.log(error.message);
       }
     }
     getBookAsync();
+    // return () => {
+    //   console.log("Return");
+    // };
   }, [bookURL]);
   const classes = useStyles();
   const modalCloseHook = useState(false);

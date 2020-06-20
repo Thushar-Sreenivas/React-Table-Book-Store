@@ -1,14 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Axios from "axios";
 import qs from "qs";
 import TextField from "@material-ui/core/TextField";
-import {  makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { closeModalContext, closeAddContext } from "../Context";
 import TableCell from "@material-ui/core/TableCell";
 import { Tooltip } from "@material-ui/core";
 import { URLContext } from "../Context";
 // import SortBook from "./SortBook";
+import { useForm } from "react-hook-form";
 
 const useStyles = makeStyles({
   container: {
@@ -33,6 +34,7 @@ export default function AddUpdateBook({
   onChange,
 }) {
   const classes = useStyles();
+  const { register, handleSubmit, watch, errors } = useForm();
 
   const [book, setBook] = useState({
     ISBN: null,
@@ -45,8 +47,9 @@ export default function AddUpdateBook({
     stack_count: null,
   });
 
-  const [urlParam, setURLParam] = useContext(URLContext);
-  if (ISBN) setURLParam(`http://localhost:3000/book/${ISBN}`);
+  // const [urlParam, setURLParam] = useContext(URLContext);
+  let urlParam = "http://localhost:3000/book/";
+  if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
 
   const [url, setURL] = useContext(URLContext);
 
@@ -91,6 +94,10 @@ export default function AddUpdateBook({
     );
   }
 
+  useEffect(() => {
+    setURL("http://localhost:3000/book/?sort=book_title&cat=");
+  }, [onSubmitHandler]);
+  
   return (
     <TableCell className={classes.container}>
       <TextField
@@ -98,6 +105,7 @@ export default function AddUpdateBook({
         label="ISBN"
         name="ISBN"
         defaultValue={ISBN}
+        // value={ISBN}
         onChange={handleChange}
         required
       />
