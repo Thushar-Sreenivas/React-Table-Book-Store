@@ -47,7 +47,7 @@ function Row(props) {
   const [url, setURL] = useContext(URLContext);
  
   const classes = useStyles();
-  let counter = 1;
+  // let counter = 1;
   const [editingBook, seteditingBook] = useState(false);
 
    function DeleteBookHandler() {

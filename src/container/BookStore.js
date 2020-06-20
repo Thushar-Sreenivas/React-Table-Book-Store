@@ -28,15 +28,13 @@ const useStyles = makeStyles({
 
 export default function BookStore() {
   const [book, setBook] = useState([]);
-  const [bookURL, setBookURL] = useContext(URLContext);
+  const [bookURL] = useContext(URLContext);
 
   useEffect(() => {
     async function getBookAsync() {
       try {
         let response = await Axios.get(`${bookURL}`);
         console.log("getBookAsync -> bookURL", bookURL);
-        // setBookURL("http://localhost:3000/book/1");
-        // console.log("getBookAsync -> bookURL", bookURL);
 
         setBook(response.data);
       } catch (error) {
@@ -44,20 +42,20 @@ export default function BookStore() {
       }
     }
     getBookAsync();
-    // return () => {
-    //   console.log("Return");
-    // };
   }, [bookURL]);
   const classes = useStyles();
   const modalCloseHook = useState(false);
   return (
-    <closeModalContext.Provider value={modalCloseHook}>
+    
+    // <closeModalContext.Provider value={modalCloseHook}>
+    <>
       <AdminHeader book={book} />
       <Card className={classes.root}>
         <CardContent className={classes.card}>
           <AdminTable book={book} />
         </CardContent>
       </Card>
-    </closeModalContext.Provider>
+      </>
+    // </closeModalContext.Provider>
   );
 }

@@ -26,11 +26,11 @@ export default function AdminHeader({book}) {
   const classes = useStyles();
   const addCloseHook = useState(false)
   return (
-    <closeAddContext.Provider value={addCloseHook}>
+    // <closeAddContext.Provider value={addCloseHook}>
       <Card className={classes.card}>
         <FilterAndSortBook book={book} />
         <AddBook />
       </Card>
-    </closeAddContext.Provider>
+    // </closeAddContext.Provider>
   );
 }

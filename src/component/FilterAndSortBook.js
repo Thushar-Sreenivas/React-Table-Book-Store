@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -24,11 +24,10 @@ const useStyles = makeStyles((theme) => ({
 export default function FilterAndSortBook({ book }) {
   const classes = useStyles();
   const [sort, setSort] = useState("");
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState(""); // eslint-disable-next-line
   const [url, setURL] = useContext(URLContext);
-  let cancelToggle = true;
   let mySetFilter = new Set();
-
+  // eslint-disable-next-line
   book.map((row) => {
     mySetFilter.add(row.category);
   });
@@ -47,11 +46,9 @@ export default function FilterAndSortBook({ book }) {
     setURL(`http://localhost:3000/book/?sort=${sort}&cat=${filter}`);
   };
 
-  
-
   const clearFilter = () => {
     setURL(`http://localhost:3000/book/?sort=${sort}&cat=`);
-    setFilter('')
+    setFilter("");
   };
 
   const handleFilterChange = (event) => {
