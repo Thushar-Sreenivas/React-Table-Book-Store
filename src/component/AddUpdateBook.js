@@ -61,7 +61,8 @@ export default function AddUpdateBook({
     });
   }
 
-  function onSubmitHandler(event) {
+  const onSubmitHandler = (book) =>  {
+    console.log("Register", book);
     Axios({
       method: req,
       url: urlParam,
@@ -87,7 +88,7 @@ export default function AddUpdateBook({
         console.log(error.response);
       });
     onChange(false);
-
+      console.log("Book",book);
     setTimeout(
       () => setURL("http://localhost:3000/book/?sort=book_title"),
       400
@@ -100,73 +101,98 @@ export default function AddUpdateBook({
   
   return (
     <TableCell className={classes.container}>
-      <TextField
-        className={classes.item}
-        label="ISBN"
-        name="ISBN"
-        defaultValue={ISBN}
-        // value={ISBN}
-        onChange={handleChange}
-        required
-      />
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <TextField
+          className={classes.item}
+          label="ISBN"
+          name="ISBN"
+          defaultValue={ISBN}
+          // value={ISBN}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.ISBN && <span>This field is required</span>}
+        {/* <input
+          type="string"
+          name="patient_name"
+          // id="patient_name"
+          // placeholder="Name"
+          inputRef={register({ required: true })}
+        /> */}
+        <TextField
+          className={classes.item}
+          label="Book Title"
+          name="book_title"
+          defaultValue={book_title}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.book_title && <span>This field is required</span>}
+        <TextField
+          className={classes.item}
+          label="Author"
+          name="author"
+          defaultValue={author}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.author && <span>This field is required</span>}
 
-      <TextField
-        className={classes.item}
-        label="Book Title"
-        name="book_title"
-        defaultValue={book_title}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        className={classes.item}
-        label="Author"
-        name="author"
-        defaultValue={author}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        className={classes.item}
-        label="Category"
-        name="category"
-        defaultValue={category}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        className={classes.item}
-        label="Publisher"
-        name="publisher"
-        defaultValue={publisher}
-        onChange={handleChange}
-      />
-      <TextField
-        className={classes.item}
-        label="Synopsis"
-        name="synopsis"
-        defaultValue={synopsis}
-        onChange={handleChange}
-      />
-      <TextField
-        className={classes.item}
-        label="Price"
-        name="price"
-        defaultValue={price}
-        onChange={handleChange}
-        required
-      />
-      <TextField
-        className={classes.item}
-        label="Stack Count"
-        name="stack_count"
-        defaultValue={stack_count}
-        onChange={handleChange}
-        required
-      />
-      <Tooltip title="Done">
-        <CheckCircleOutlineIcon onClick={onSubmitHandler} />
-      </Tooltip>
+        <TextField
+          className={classes.item}
+          label="Category"
+          name="category"
+          defaultValue={category}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.category && <span>This field is required</span>}
+        <TextField
+          className={classes.item}
+          label="Publisher"
+          name="publisher"
+          defaultValue={publisher}
+          // onChange={handleChange}
+          inputRef={register}
+        />
+        <TextField
+          className={classes.item}
+          label="Synopsis"
+          name="synopsis"
+          defaultValue={synopsis}
+          // onChange={handleChange}
+          inputRef={register}
+        />
+        <TextField
+          className={classes.item}
+          label="Price"
+          name="price"
+          defaultValue={price}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.price && <span>This field is required</span>}
+
+        <TextField
+          className={classes.item}
+          label="Stack Count"
+          name="stack_count"
+          defaultValue={stack_count}
+          // onChange={handleChange}
+          inputRef={register}
+          required
+        />
+        {errors.stack_count && <span>This field is required</span>}
+
+        <Tooltip title="Submit">
+          <TextField type="submit" />
+        </Tooltip>
+      </form>
     </TableCell>
   );
 }

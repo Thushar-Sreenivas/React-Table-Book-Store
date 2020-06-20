@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { URLContext } from "../Context";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { Tooltip } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -96,11 +97,13 @@ export default function FilterAndSortBook({ book }) {
           ))}
         </Select>
       </FormControl>
-      <CancelIcon
-        style={{ marginTop: "24px", marginLeft: "8px" }}
-        color="primary"
-        onClick={clearFilter}
-      />
+      <Tooltip title="Clear Filter">
+        <CancelIcon
+          style={{ marginTop: "24px", marginLeft: "8px" }}
+          color="primary"
+          onClick={clearFilter}
+        />
+      </Tooltip>
     </>
   );
 }
