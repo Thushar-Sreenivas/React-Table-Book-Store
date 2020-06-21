@@ -33,8 +33,8 @@ export default function AddUpdateBook({
   const classes = useStyles();
   const { register, handleSubmit, errors } = useForm();
 
-  let urlParam = "http://localhost:3000/book/";
-  if (ISBN) urlParam = `http://localhost:3000/book/${ISBN}`;
+  let urlParam = "https://sheltered-taiga-67637.herokuapp.com/book/";
+  if (ISBN) urlParam = `https://sheltered-taiga-67637.herokuapp.com/book/${ISBN}`;
   // eslint-disable-next-line
   const [url, setURL] = useContext(URLContext);
 
@@ -67,13 +67,18 @@ export default function AddUpdateBook({
     onChange(false);
     console.log("Book", book);
     setTimeout(
-      () => setURL("http://localhost:3000/book/?sort=book_title"),
+      () =>
+        setURL(
+          "https://sheltered-taiga-67637.herokuapp.com/book/?sort=book_title"
+        ),
       400
     );
   };
 
   useEffect(() => {
-    setURL("http://localhost:3000/book/?sort=book_title&cat=");
+    setURL(
+      "https://sheltered-taiga-67637.herokuapp.com/book/?sort=book_title&cat="
+    );
     // eslint-disable-next-line
   }, [onSubmitHandler]);
 

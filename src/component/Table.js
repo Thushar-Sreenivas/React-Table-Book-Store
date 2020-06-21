@@ -46,10 +46,15 @@ function Row(props) {
 
   function DeleteBookHandler() {
     setURL(`${url}${row.ISBN}`);
-    Axios.delete(`http://localhost:3000/book/${row.ISBN}`);
+    Axios.delete(
+      `https://sheltered-taiga-67637.herokuapp.com/book/${row.ISBN}`
+    );
 
     setTimeout(
-      () => setURL("http://localhost:3000/book/?sort=book_title"),
+      () =>
+        setURL(
+          "https://sheltered-taiga-67637.herokuapp.com/book/?sort=book_title"
+        ),
       400
     );
   }

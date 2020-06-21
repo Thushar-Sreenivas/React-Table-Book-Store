@@ -38,11 +38,15 @@ export default function FilterAndSortBook({ book }) {
   };
 
   const onSubmitHandler = () => {
-    setURL(`http://localhost:3000/book/?sort=${sort}&cat=${filter}`);
+    setURL(
+      `https://sheltered-taiga-67637.herokuapp.com/book/?sort=${sort}&cat=${filter}`
+    );
   };
 
   const clearFilter = () => {
-    setURL(`http://localhost:3000/book/?sort=${sort}&cat=`);
+    setURL(
+      `https://sheltered-taiga-67637.herokuapp.com/book/?sort=${sort}&cat=`
+    );
     setFilter("");
   };
 
